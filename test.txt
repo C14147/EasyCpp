@@ -1,0 +1,5 @@
+hello world, this is a test
+你好(@^0^@)/，EasyCpp！
+EasyCpp Version: 1.0.0
+FileOperator Version: 1.0.0
+String Version: 1.0.0

@@ -8,7 +8,7 @@ int main(){
     // File I/O & String Class Test
     File* a = open("test.txt","a+");
     a->write(
-        String("hello world, this is a test\n你好\(@^0^@)/，{}！\n")
+        esb "hello world, this is a test\n你好\(@^0^@)/，{}！\n" ese
         .format((STRING_FOMATER)String("EasyCpp")) +
 		String("EasyCpp Version: ") + String(_EASYCPP_VERSION) +
 		String("\nFileOperator Version: {}\nString Version: {}")

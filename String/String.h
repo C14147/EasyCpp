@@ -23,6 +23,8 @@
 #pragma once
 #define _EASYCPP_STRING_VERSION "1.0.0"
 #define STRING_FOMATER const char *
+#define esb easycpp::String(
+#define ese )
 
 #include <iostream>
 #include <cstring>
