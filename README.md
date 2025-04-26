@@ -9,13 +9,13 @@ EasyCpp
 ## Introduction
 C++ has faster speed, while Python has powerful libraries. This library aims to port some of the powerful features of Python to C++, making C++ programming faster.
 ## Get Started
-#### Method 1: Clone & Copy
+### Method 1: Clone & Copy
 Run the following code on the terminal:
 ```bash
 git clone https://github.com/C14147/EasyCpp.git
 ```
 Then, you can copy it into your project. No additional operation required!
-#### Method 2:Compile to Library
+### Method 2:Compile to Library
 There is no code in the source file for generating static libraries or dynamic link libraries. If necessary, please manually edit and compile. Please note the open source agreement.
 # Usage
 Refer to the **wiki** of this repository.
