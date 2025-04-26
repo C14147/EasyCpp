@@ -23,8 +23,10 @@
 #pragma once
 #define _EASYCPP_STRING_VERSION "1.0.0"
 #define STRING_FOMATER const char *
-#define esb easycpp::String(
-#define ese )
+
+#ifdef PYTHON_FORMATED
+#define str easycpp::String
+#endif
 
 #include <iostream>
 #include <cstring>
@@ -155,6 +157,17 @@ namespace easycpp{
         }
 
         /**
+         * @brief Checks if the string ends with the specified C-style string suffix.
+         * @param suffix The C-style string suffix to check for.
+         * @return true if the string ends with the suffix, false otherwise.
+         */
+        bool endswith(const char* suffix) const {
+            size_t suffixLength = std::strlen(suffix);
+            if (suffixLength > length) return false;
+            return std::strcmp(data + length - suffixLength, suffix) == 0;
+        }
+
+        /**
          * @brief Checks if the string starts with the specified prefix.
          * @param prefix The prefix to check for.
          * @return true if the string starts with the prefix, false otherwise.
@@ -162,6 +175,17 @@ namespace easycpp{
         bool startswith(const String& prefix) const {
             if (prefix.length > length) return false;
             return std::strncmp(data, prefix.data, prefix.length) == 0;
+        }
+
+        /**
+         * @brief Checks if the string starts with the specified C-style string prefix.
+         * @param prefix The C-style string prefix to check for.
+         * @return true if the string starts with the prefix, false otherwise.
+         */
+        bool startswith(const char* prefix) const {
+            size_t prefixLength = std::strlen(prefix);
+            if (prefixLength > length) return false;
+            return std::strncmp(data, prefix, prefixLength) == 0;
         }
 
         /**
@@ -176,6 +200,17 @@ namespace easycpp{
         }
 
         /**
+         * @brief Finds the first occurrence of a C-style string in the string.
+         * @param sub The C-style string to search for.
+         * @return The index of the first occurrence of the substring, or -1 if not found.
+         */
+        int find(const char* sub) const {
+            const char* pos = std::strstr(data, sub);
+            if (pos == nullptr) return -1;
+            return static_cast<int>(pos - data);
+        }
+        
+        /**
          * @brief Formats the string using the fmt library.
          * @tparam Args The types of the arguments to be used for formatting.
          * @param args The arguments to be used for formatting.
@@ -183,6 +218,9 @@ namespace easycpp{
          */
         template<typename... Args>
         String format(Args&&... args) const {
+			if(typeid(Args) == easycpp::String){
+				args... = (STRING_FOMATER)args...;
+			}
             std::string formatted = fmt::format(std::string(data), std::forward<Args>(args)...);
             return String(formatted.c_str());
         }
